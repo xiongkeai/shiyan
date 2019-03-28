@@ -1,0 +1,152 @@
+##文本类属性
+  
+  1.字体类型
+
+语法：font-family:字体1,字体2,字体3;
+
+eg:  font-family:"微软雅黑","黑体";
+
+注：a) 多个字体之间用逗号分隔，浏览器会优先识别字体1，如果找不到，识别字体2，如果列出的所有字体都无法识别，显示浏览器默认字体
+
+       b) 中文字体要加双引号，英文字体如果由多个单词组成也要加双引号
+
+       c) 特殊字体一律用图片
+
+2.文本大小
+
+语法：font-size:数值+单位;
+
+eg:  font-size:18px;
+
+注：a）设置字体大小的单位有px，em，rem，pt
+
+      b）字体大小一般设置偶数不设置奇数
+
+      c）浏览器默认字体大小为16px
+
+      d）font-size:medium;  等价于  font-size:16px;
+
+3.文本加粗
+
+语法：font-weight:normal(常规字体)|bold(加粗)|bolder(加粗)|100-900;
+
+eg:   h1,h2,h3,h4,h5,h6,strong,b{font-weight:normal;}
+
+注：设置为数值时，100-500为常规字体，600-900为加粗字体
+
+4.文本倾斜
+
+语法：font-style:normal(去掉倾斜，常规显示)|italic(倾斜)|oblique（倾斜）;
+
+eg:  em,i{font-style:normal;}
+
+5.文本是否大小写
+
+语法：font-variant:normal(常规显示)|small-caps(小型大写字母字体)；
+
+注：此属性只对英文起作用
+
+6.font复合写法
+
+语法：font: style variant  weight  size  family;
+
+eg:  font:12px/1.5 "微软雅黑";
+
+上述写法代表字体大小为12px，行高为字体大小的1.5倍即18px，字体类型为微软雅黑
+
+注：a) font复合写法中，多个属性值之间用空格隔开
+
+      b) 字体大小和字体类型不能互换位置，必须放在最后
+
+7.文本颜色
+
+语法：color:颜色值;
+
+注：颜色值的三种设置方法：
+
+a) 十六进制写法：
+
+color:#000; (黑色)    color:#fff;（白色）
+
+b) rgb模式写法
+
+color:rgb(0,0,0);  黑色      color:rgb(255,255,255);  白色
+
+c) 颜色值单词
+
+color:red; 
+
+8.水平对齐方式
+
+语法：text-align:left(左对齐)|center(居中对齐)|right(右对齐)|justify(两端对齐);
+
+注：a) justify两端对齐只对英文起作用
+
+       b) 设置文本，图片等行内元素水平居中，是通过给父元素设置text-align为center来实现
+      
+9.行高
+
+语法：line-height:数值|数值+单位;
+
+注：a)当line-height只设置数值不加单位时，代表行高为字体大小的多少倍
+
+      b) 当行高等于容器高时，可以实现单行文本在定高容器中垂直居中
+
+      c) line-height不允许设置负值
+
+10.文本修饰
+
+语法：text-decoration:none(去掉文本修饰)|underline(下划线)|overline(上划线)|line-through(删除线)；
+
+eg:   a{text-decoration:none;}  a:hover{text-decoration:underline;}
+
+
+11.首行缩进
+
+语法：text-indent:数值+单位;
+
+注：设置为正值时向后缩进，负值向前缩进，当设置较大负值时，类似于隐藏的效果
+
+12.字符间距
+
+语法：letter-spacing:数值+单位;
+
+注：允许设置负值，主要用来设置汉字与汉字，英文字母与字母之间的间距
+
+13.词间距
+
+语法：word-spacing:数值+单位;
+
+注：该属性只对英文起作用，允许设置负值
+
+14.文本转换大小写
+
+语法：text-transform:none(默认值)|capitalize(首字母大写)|uppercase(全部大写)|lowercase(全部小写);
+
+注：只对英文起作用
+
+15.长单词换行
+
+语法：word-wrap:normal|break-word;
+
+16.强制在一行显示
+
+语法：white-space:normal|nowrap|pre|pre-wrap|pre-line;
+
+normal  默认值，忽略空白符和换行符，自动换行
+
+nowrap  强制在一行显示，忽略空白符和换行符
+
+pre    保留空白符和换行符，并且强制在一行显示
+
+pre-wrap   保留空白符和换行符，自动换行
+
+pre-line   合并空白符，保留换行符，自动换行
+
+17.垂直对齐方式
+
+语法：vertical-align:baseline(默认值)|top(顶部对齐)|middle(中部对齐)|bottom(底部对齐);
+
+注：a）vertical-align应用在表格单元格内容垂直对齐方式设置
+
+      b）定义行内元素的基线相对于该元素所在行的基线的垂直对齐
