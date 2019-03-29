@@ -1,0 +1,157 @@
+一、宽高自适应
+
+1.宽度自适应
+
+语法：width:100%;  (块元素默认宽度为100%，继承父元素的宽度)
+
+注：宽度自适应主要应用于通栏效果
+
+2.高度自适应
+
+语法：height:auto; 或不设置高度
+
+二、最小，最大高度，最小，最大宽度
+
+1.最小高度
+
+语法：min-height:数值+单位;
+
+注：在IE6中，不能识别min-height属性，兼容写法如下：
+
+a) min-height:200px; _height；200px;
+
+注：添加下划线的css属性只有IE6浏览器识别，其他浏览器都不识别
+
+b) min-height:200px; height:auto!important; height:200px;
+
+注：添加!important关键词的css属性值除了IE6以外的其他浏览器都识别
+
+2.最大高度
+
+语法：max-height:数值+单位;
+
+3.最小宽度
+
+语法：min-width:数值+单位;
+
+注：块元素设置最小宽度时，需要将元素转换为inline-block后再去设置
+
+4.最大宽度
+
+语法：max-width:数值+单位;
+
+三、高度塌陷问题（常见的几种清除浮动的方法）
+
+描述：父元素高度自适应，子元素float后，造成父元素高度为0，我们把这个问题叫做高度塌陷问题
+
+解决方案如下：
+
+1) 给父元素设置一个固定的高度   height:value;
+
+缺点：违背了高度自适应的原则
+
+2) 给父元素设置 overflow:hidden;
+
+原理：子元素float后脱离文档流不再占据空间，即不再参与父元素的高度计算。
+
+      当给父元素设置overflow:hidden;后，就触发了BFC(block formatting context即块级格式化上下文)，闭合了子元素的浮动，子元素参与父元素高度的计算
+
+优点：兼容性好，简单
+
+缺点：当子元素溢出时会被隐藏不可见
+
+3) 在浮动的子元素末尾添加一个空div，并设置如下样式：
+
+.clearx{clear:both;height:0;overflow:hidden;}
+
+原理：设置height:0;overflow:hidden;是为了兼容IE6，在IE6不能识别height为0，会显示一个默认的高度
+
+缺点：在网页中添加若干个无意义的div，会造成代码冗余，不利于网站性能优化
+
+4) 万能清除浮动法
+
+父元素:after{content:"";display:block;height:0;clear:both;overflow:hidden;visibility:hidden;}
+
+优点：弥补了以上三种方案的不足之处，是官方推荐的清除浮动的方法
+
+四、伪元素
+
+1.在元素内所有内容之前添加伪元素
+
+语法：  父元素::before{
+	        content:"hello world";
+	        font-size:32px;
+	        ...
+        }
+
+2.在元素内所有内容之后添加伪元素
+
+语法： 父元素::after{
+	       content:url(img/1.jpg);
+	       ...
+       }
+
+注：a) 无论伪元素的内容是否为空，都不能省略content属性
+
+    b) 伪元素是内联元素
+
+    c) ::after常用于清除浮动
+
+    d) :和::主要用来区分伪类和伪元素，两种写法的效果是一样的
+
+3.匹配段落文本中的第一行
+
+语法：  元素::first-line{background:red;}
+
+4.匹配段落文本中的第一个字符
+
+语法：  元素::first-letter{color:red;}
+
+5.改变选中文本的效果
+
+语法： 元素::selection{color:white;background:orange;}
+
+五、元素隐藏不可见的两种方式
+
+1.display:none;   (看不见，摸不着)
+
+元素隐藏不可见，位置不保留
+
+2.visibility:hidden; (看不见，摸的着)
+
+元素隐藏不可见，位置保留
+
+六、窗口高度自适应
+
+语法：html,body{height:100%;}
+
+      元素{height:100%;}
+
+注：窗口高度自适应主要运用于某个元素设置height为百分之百，适应浏览器窗口的高度
+
+    此设置方法主要运用于body高度为0的情况
+
+七、水平居中问题
+
+1.行内元素水平居中
+
+如果被设置元素为文本、图片等行内元素时，水平居中是通过给父元素设置 text-align:center 来实现的
+
+2.定宽块元素水平居中
+
+满足定宽和块状两个条件的元素是可以通过设置"左右margin"值为"auto"来实现居中的
+
+3.不定宽块元素水平居中
+
+方案一：
+
+父元素{text-align:center;}
+
+子元素{display:inline-block;}
+
+方案二：
+
+父元素{display:table;margin:0 auto;}
+
+注：display:table; 是将元素转换为表格形式
+
