@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>四则运算</title>
+</head>
+<body>
+	<!-- 减法 -->
+		<input id="n1" type="text"/>-
+		<input id="n2" type="text"/>
+		<input type="button" value="=" onclick="testf()"/>
+		<input id="n3" type="text">
+		<br>
+    	<input id="a1" type="text"/>*
+		<input id="a2" type="text"/>
+		<input type="button" value="=" onclick="cheng()"/>
+    	<input id="a3" type="text">
+    	<br>  	
+    	<input id="b1" type="text"/>/
+		<input id="b2" type="text"/>
+		<input type="button" value="=" onclick="chu()"/>
+    	<input id="b3" type="text">
+    	<br>
+    	<input id="c1" type="text"/>%
+		<input id="c2" type="text"/>
+		<input type="button" value="=" onclick="yu()"/>
+    	<input id="c3" type="text">
+
+</body>
+</html>
+<script type="text/javascript">
+	function testf(){
+		var n1=document.getElementById("n1").value;
+ 		var n2=document.getElementById("n2").value;
+        var n3 = parseInt(n1)-parseInt(n2);
+ 	    document.getElementById("n3").value = Math.round(n3);
+	}
+	function cheng(){
+		var a1=document.getElementById("a1").value;
+ 		var a2=document.getElementById("a2").value;
+ 	    var a3= parseInt(a1)*parseInt(a2);
+ 	    document.getElementById("a3").value = Math.round(a3);
+	}
+ //除法
+ 	function chu(){
+		var b1=document.getElementById("b1").value;
+ 		var b2=document.getElementById("b2").value;
+    	var b3= parseInt(b1)/parseInt(b2);
+ 	    document.getElementById("b3").value = Math.round(b3);
+	}
+//余数
+	function yu(){
+		var c1=document.getElementById("c1").value;
+ 		var c2=document.getElementById("c2").value;
+    	var c3 = parseInt(c1)%parseInt(c2);
+ 	    document.getElementById("c3").value = Math.round(c3);
+	}
+
+</script>
