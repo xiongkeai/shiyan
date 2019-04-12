@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="button" value="加密后为:" onclick="encrypt()">
+	密文为:<input id="end" type="text">
+</body> 
+</html>
+<script type="text/javascript">
+	function encrypt(){
+		document.getElementById('end').value=start(1175);
+	}
+
+	function start(i){	
+		var q=parseInt(i/1000);
+		var b=parseInt(i/100)%10;
+		var s=parseInt(i/10)%10;
+		var g=parseInt(i%10);
+		i=Number((q+5)%10*1+(b+5)%10*10+(s+5)%10*100+(g+5)%10*1000);
+		return i;
+	}
+
+
+
+</script>
