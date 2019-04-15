@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+	</head>
+	<body>
+		多大的缸：<input id="gang" type="text" /><br/>
+		现在有多少水：<input id="initwater" type="text" /><br/>
+		每次挑多少：<input id="every" type="text" /><br/>
+		<input type="button" value="  测试  " onclick ="testf()" />
+	</body>
+</html>
+<script type="text/javascript">
+//山上有口缸可以装50升水，现有15升，小和尚下山挑水，每次挑5升，几次挑满。
+
+function testf(){
+	var gang = Number(document.getElementById("gang").value);
+	var water = Number(document.getElementById("initwater").value);
+	var every = Number(document.getElementById("every").value);
+	
+	var count = 0;//计数的
+	while(water<gang){
+		water = water+every;
+		count++;
+	}
+
+	console.log("挑了"+count+"次");
+	
+}
+
+</script>
