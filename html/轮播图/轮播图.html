@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>轮播图</title>
+		<style type="text/css">
+			#box{
+				width: 660px;
+				height: 300px;
+				margin:0 auto;
+				position: relative;
+				
+			}
+			
+			#box img{
+				width: 600px;
+				height: 300px;	
+				opacity: 0;	
+				left:0px;
+				top:0px;
+				position: absolute;
+			
+				
+			}
+
+			#box img:nth-child(1){
+				opacity: 1;
+			}
+
+			ul{
+				float:right;
+				list-style: none;
+				margin:0;
+				z-index: 5;
+			}
+			li{
+				position:relative;
+				color:#fff;
+				width:60px;
+				height: 50px;
+				background-color:black;
+				text-align:center;
+				line-height:50px;
+				
+			}
+			li span{
+				position:absolute;
+				left:-18px;
+				top:18px;
+				font-size:0;
+				border:8px solid transparent;
+				border-right:10px solid #c43a3a;
+				display:none;
+			}
+			ul li:nth-child(1) span{
+				display:block;
+			}
+			ul li:nth-child(1){
+				background-color:#c43a3a;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<img  src="img/1.jpg"/>
+			<img  src="img/2.jpg"/>
+			<img  src="img/3.jpg"/>
+			<img  src="img/4.jpg"/>
+			<img  src="img/5.jpg"/>
+			<img  src="img/6.jpg"/>
+			<ul id="doudouBox">
+				<li><span></span>要闻</li>
+				<li><span></span>社会</li>
+				<li><span></span>娱乐</li>
+				<li><span></span>体育</li>
+				<li><span></span>军事</li>
+				<li><span></span>明星</li>
+			</ul>
+		</div>	
+	</body>
+</html>
+<script type="text/javascript" src="js/css.js" ></script>
+<script type="text/javascript" src="js/mover.js" ></script>
+<script type="text/javascript">
+
+let myTimer = null;
+let currIndex = 0;
+var arr=["http://www.baidu.com","http://www.taobao.com","http://www.jd.cn","http://www.bilibili.com","http://www.baidu.com","http://www.taobao.com"];
+
+
+function autoPlay(){
+	if(myTimer!=null){
+		return;
+	}
+	myTimer = setInterval(function(){
+		let outIndex = currIndex;
+		currIndex=currIndex+1;
+
+		if(currIndex>=6){
+			currIndex=0;
+		}
+
+		showImg(outIndex,currIndex);
+
+	},2000);
+
+}
+	
+function stopPlay(){
+	window.clearInterval(myTimer);
+	myTimer = null;
+}
+
+
+function goImg(index){
+	let outIndex = currIndex;
+	currIndex = index;
+
+	if(currIndex>=6 || currIndex<0){
+		currIndex=0;
+	}
+
+	showImg(outIndex,currIndex);
+}
+
+function showImg(outOrd,inOrd){
+	if(outOrd==inOrd){
+		return;
+	}
+
+
+	let imgDoms=$("#box").children;
+
+	fadeInOut(imgDoms[outOrd],500,imgDoms[inOrd]);
+
+	
+	let liDoms = $("#doudouBox").children;
+	for(var i=0;i<liDoms.length;i++){
+		liDoms[i].style.backgroundColor = "black";
+		liDoms[i].firstChild.style.display = "none";
+	}
+	liDoms[inOrd].style.backgroundColor = "#c43a3a";
+	liDoms[inOrd].firstChild.style.display = "block";
+}
+
+window.onload = function(){
+	autoPlay();
+	$("#box").onmouseover = function(){
+		stopPlay();
+	}
+
+	$("#box").onmouseout = function(){
+		autoPlay();
+	}
+
+
+	let liDoms = $("#doudouBox").children;
+	for(var i=0;i<liDoms.length;i++){
+		liDoms[i].setAttribute("index",i);
+		liDoms[i].onmousemove = function(event){
+			let evt = event || window.event;
+			goImg(this.getAttribute("index"));
+			evt.stopPropagation();
+		}
+	}
+
+	$("#box").onclick = function(){
+		location.href = arr[currIndex];
+	}
+
+}
+
+function $(str){
+	if(str.charAt(0)=="#"){
+		return document.getElementById(str.substring(1));
+	}else if(str.charAt(0)=="."){
+		return document.getElementsByClassName(str.substring(1));
+	}else{
+		return document.getElementsByTagName(str);
+	}
+}	
+</script>
+
